@@ -1,0 +1,33 @@
+{
+  "name": "test3.dealerproductions.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6-alpha.6",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.17.0",
+    "express-ws": "^4.0.0",
+    "helmet": "^3.21.2",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request-ip": "^2.1.3",
+    "rotating-file-stream": "^1.4.6",
+    "serve-favicon": "^2.5.0",
+    "uniqid": "^5.1.0"
+  }
+}

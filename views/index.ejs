@@ -1,0 +1,145 @@
+<script>
+  let locals = <%-JSON.stringify(locals)%>;
+  console.log(locals);
+</script>
+
+<div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+REGISTER
+<form id="register" method="post" action="https://test3.dealerproductions.com/register">
+  <input type="text" name="username" placeholder="username"/>
+  <input type="password" name="password" placeholder="password"/>
+  <input type="submit" value="register"/>
+</form>
+
+LOGIN
+<form id="login" method="post" action="https://test3.dealerproductions.com/login">
+  <input type="text" name="username" placeholder="username"/>
+  <input type="password" name="password" placeholder="password"/>
+  <input type="submit" value="login"/>
+</form>
+
+AVATAR
+<form id="avatar" method="post" action="https://test3.dealerproductions.com/avatar">
+  <input type="file" name="avatar" accept="image/*"/>
+  <input type="submit" value="upload"/>
+</form>
+
+MESSAGE
+<form id="message" method="post" action="https://test3.dealerproductions.com/message">
+  <input type="text" name="id" placeholder="id"/>
+  <textarea name="message" placeholder="message"></textarea>
+  <input type="submit" value="send"/>
+</form>
+
+USERNAME
+<form id="username" method="post" action="https://test3.dealerproductions.com/username">
+  <input type="text" name="username" placeholder="username"/>
+  <input type="submit" value="send"/>
+</form>
+
+</div>
+
+<script>
+
+  // REGISTER
+  $('#register').on('submit', function(e) {
+    e.preventDefault();
+    let values = {};
+    $.each($(this).serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    axios.post($(this).attr('action'), values).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err.response.data);
+    })
+  })
+  // LOGIN
+  $('#login').on('submit', function(e) {
+    e.preventDefault();
+    let values = {};
+    $.each($(this).serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    axios.post($(this).attr('action'), values).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err.response.data);
+    })
+  })
+  // AVATAR
+  $('#avatar').on('submit', function(e) {
+    e.preventDefault();
+    let fileData = $(this).find("input[type='file']")[0].files[0];
+    let formData = new FormData();
+    formData.append('avatar', fileData);
+    console.log(fileData);
+    axios.post($(this).attr('action'), formData).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err.response.data);
+    })
+  })
+  // MESSAGE
+  $('#message').on('submit', function(e) {
+    e.preventDefault();
+    let values = {};
+    $.each($(this).serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    axios.post($(this).attr('action'), values).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err.response.data);
+    })
+  })
+  // USERNAME
+  $('#username').on('submit', function(e) {
+    e.preventDefault();
+    let values = {};
+    $.each($(this).serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    axios.post($(this).attr('action'), values).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err.response.data);
+    })
+  })
+
+
+  // wss
+  const connectSocket = function() {
+    if (!window.WebSocket) {
+      console.log('Your browser doesn\'t support WebSocket.')
+      return;
+    }
+
+    let connection = new WebSocket(`wss://${location.hostname}${location.port ? ':' + location.port : ''}/message`, 'echo-protocol');
+
+    connection.onopen = function () {
+      connection.send(JSON.stringify({id:'2km3swk2fwk2olr9gy', message:'reeeeeeee'}));
+      console.log('Connection to websocket has been created.');
+    };
+    connection.onerror = function (error) {
+      console.log('There\'s some problem with your connection or the server is down.');
+      connection.close();
+    };
+    connection.onmessage = function (message) {
+      console.log(message.data);
+    };
+    connection.onclose = function(event) {
+      console.log('Connection has been closed');
+      connectSocket();
+    };
+  }
+
+  connectSocket();
+
+
+</script>
