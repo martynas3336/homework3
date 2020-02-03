@@ -4,7 +4,7 @@
 `node.js`, `mysql`
 
 ## installation
-1. Close this repository
+1. Clone this repository
 2. Run `npm install`
 3. Rename `.env.example` to `.env` and configure based on your settings
 4. Create database entries:
